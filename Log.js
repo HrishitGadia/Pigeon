@@ -163,5 +163,5 @@ function validate_field(field) {
 }
 
 function Switch(){
-  window.location = "home.html";
+  window.location = "Home.html";
 }
