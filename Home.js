@@ -64,9 +64,9 @@ function getmsg(Msg_owner) {
 }
 var Visiblity = "";
 function GetData() {
-  AddModal = '<div class="modal" id="Chat"> <div class="modal-dialog"> <div class="modal-content"> <!-- Modal Header --> <div class="modal-header"> <h4 class="modal-title"id="Title"> Add A new Chat </h4> <button type="button" class="btn-close" data-bs-dismiss="modal"></button> </div> <!-- Modal body --> <div class="modal-body"><p>Group Name: </p><input id="GrpName" placeholder="White The Name Of The Group"><br><br><p>Visible To: </p><input id="GrpSeen" placeholder="Who all can Join This Group (User Id)"><br><br><button type="submit" onclick="ChangeSet(this.id)" class="btn btn-info" id="' + 'NewChat">Make Group/Chat</button></div> <!-- Modal footer --> <div class="modal-footer"> <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button> </div> </div> </div> </div>';
+  AddModal = '<div class="modal" id="Chat"> <div class="modal-dialog"> <div class="modal-content"> <!-- Modal Header --> <div class="modal-header"> <h4 class="modal-title"id="Title"> Add A new Chat </h4> <button type="button" class="btn-close" data-bs-dismiss="modal"></button> </div> <!-- Modal body --> <div class="modal-body"><p>Group Name: </p><input id="GrpName" placeholder="White The Name Of The Group"><br><br><p>Visible To: </p><input id="GrpSeen" placeholder="Who all can Join This Group (User Id)"><br><br><button type="submit" onclick="Addchat(this.id)" class="btn btn-info" id="NewChat">Make Group/Chat</button></div> <!-- Modal footer --> <div class="modal-footer"> <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button> </div> </div> </div> </div>';
   document.getElementById("Home").innerHTML = document.getElementById("Home").innerHTML + AddModal;
-  document.getElementById('header').innerHTML = '<img id="userPic" class="img-responsive col-sm-2 col-lg-2" src="Logo.png"><p class="col"> Your User Id : ' + UserId + '</p><button onclick="Addchat()" class="col glyphicon glyphicon-plus" id="add"data-bs-toggle="modal" data-bs-target="#Chat"> Add Chat</button>'
+  document.getElementById('header').innerHTML = '<img id="userPic" class="img-responsive col-sm-2 col-lg-2" src="Logo.png"><p class="col"> Your User Id : ' + UserId + '</p><button class="col glyphicon glyphicon-plus" id="add"data-bs-toggle="modal" data-bs-target="#Chat"> Add Chat</button>'
   firebase.database().ref(`/Chats/`).on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
       ChatId = childSnapshot.key;
@@ -88,12 +88,6 @@ function GetData() {
     })
   });
 }
-firebase.database().ref('/Chats/').push({
-  Visible: '3oFDNPFL4NWF5KZysZajrNNA25M2',
-  Icon : 'apple.com',
-  Description : 'Will It Work?',
-  Title : 'Testing..'
-});
 function ChangeSet(ChatId) {
   Visiblity = document.getElementById("Visiblity").value;
 
@@ -126,15 +120,19 @@ function Sendmsg() {
 function Addchat() {
   a = document.getElementById("Msgs").innerHTML;
   b = document.getElementById("List").innerHTML;
+  a = b = ''
   if (a == '' && b == '') {
     ChatId = localStorage.getItem("ChatId")
     Name = localStorage.getItem('User Name');
     console.log('oo')
+    c = document.getElementById('GrpSeen').value
+    d = document.getElementById('GrpName').value
     firebase.database().ref('/Chats').push({
-      Sent_by: UserId,
-      Sent_by_name: Name,
-      Sent_message: Tmessage
-      //Sent_on
+      Visible: c,
+      Icon: 'apple.com',
+      Description: 'Will It Work?',
+      Title: d,
+      Name: Name
     });
   }
 }
