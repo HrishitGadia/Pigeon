@@ -61,6 +61,7 @@ function register() {
       // DOne
       alert('User Created!!')
       localStorage.setItem('User Id', user.uid);
+      localStorage.setItem('User Name', full_name);
       document.getElementById("hideit").style.display = "none";
       document.getElementById("showit").style.display = "block";
     })//.then(function () {
@@ -79,6 +80,7 @@ function register() {
 function login() {
   // Get all our input fields
   email = document.getElementById('email').value
+  full_name = document.getElementById('full_name').value
   password = document.getElementById('password').value
 
   // Validate input fields
@@ -109,6 +111,7 @@ function login() {
 
       // DOne
       alert('User Logged In!!')
+      localStorage.setItem('User Name', full_name);
       localStorage.setItem('User Id', user.uid)
       document.getElementById("hideit").style.display = "none";
       document.getElementById("showit").style.display = "block";
