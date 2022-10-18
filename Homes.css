@@ -16,7 +16,7 @@
     height: fit-content;
 }
 
-#Msgs {
+#Msgsa {
     overflow-x: hidden;
     overflow-y: scroll;
     max-height: 80vh;
@@ -65,11 +65,16 @@
     width: 100px;
 }
 
-#Visiblity,#GrpName,#GrpSeen {
+#Visiblity,#GrpName,#GrpSeen,#GrpIcon,#GrpDes {
     width: 80%;
 }
 
 #add{
     background-color: transparent;
     border: none;
+}
+
+#group{
+    bottom: 0;
+    left: 0;
 }
