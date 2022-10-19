@@ -179,3 +179,5 @@ function loadFile(event) {
   ab = URL.createObjectURL(event.target.files[0]);
   localStorage.setItem("GrpIcon", ab)
 };
+
+GetData();
