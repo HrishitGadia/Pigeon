@@ -61,6 +61,8 @@ function OpenChat(ChatId) {
     document.getElementById("Description").value = Description;
     document.getElementById("Title").value = Title;
     document.getElementById("Msgs").innerHTML = "";
+    getmsg(ChatId)
+
   }
     //Error Occures
     , function (error) {
@@ -82,7 +84,7 @@ function getmsg(Msg_owner) {
       Sent_message = MessageData["Sent_message"]
       Sent_by_name = MessageData["Sent_by_name"]
 
-    //Setting Values To HTML Elements From Variables
+      //Setting Values To HTML Elements From Variables
       if (Sent_By == UserId) {
         Message_Right = '<br><br> <div class="row Right"> <img src="Logo.png" class="Icon"> <div class="col"> <h5>' + Sent_by_name + '</h5> <p>' + Sent_message + '</p> </div> </div> <br><br>';
         document.getElementById("Msgs").innerHTML = document.getElementById("Msgs").innerHTML + Message_Right;
@@ -129,8 +131,8 @@ function ChangeSet(ChatId) {
   firebase.database().ref('/Chats/' + ChatId).update({
     Visible: Visiblity,
     Description: Des,
-    Title : Title,
-    Icon : Icon,
+    Title: Title,
+    Icon: Icon,
   });
 }
 function Sendmsg() {
